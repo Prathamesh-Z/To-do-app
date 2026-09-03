@@ -24,13 +24,13 @@ btn.addEventListener("click", ()=> {
 let ul = document.querySelector("ul");
 
 ul.addEventListener("click", function(event){
-    if(event.target.classList == "delete"){
+    if(event.target.classList.contains("delete")){
         let par = event.target.parentElement;
         par.remove();
         // console.log(event.target); it returns the button element
     }
 
-    if(event.target.classList == "edit"){
+    if(event.target.classList.contains("edit")){
         let par = event.target.parentElement;
 
         // let inp = document.querySelector("input");
@@ -59,7 +59,7 @@ ul.addEventListener("click", function(event){
 
         // console.log(par); returns current li
     }
-    
+      
 });
 
 ul.addEventListener("click", function(event){
