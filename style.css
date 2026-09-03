@@ -23,3 +23,13 @@
     justify-content: center;
     min-height: 10rem;
 }
+
+li.completed {
+    list-style: none;
+    /* text-decoration: line-through; */
+    
+}
+
+li.completed::before{
+    content: "✓";
+}
