@@ -7,7 +7,11 @@ btn.addEventListener("click", () => {
     let inp = document.querySelector("input");
     // let uList = document.querySelector("ul");
 
-    list.push(inp.value);
+    // list.push(inp.value);
+       list.push({
+        text: inp.value,
+        completed: false,
+       }); 
     
     localStorage.setItem("list", JSON.stringify(list)); // converts array to jSON
 
@@ -64,7 +68,7 @@ ul.addEventListener("click", function (event) {
         
 
         changeBtn.addEventListener("click", () => {
-            list[editIdx] = editInput.value;
+            list[editIdx].text = editInput.value;
             localStorage.setItem("list", JSON.stringify(list));
             renderTasks(list);
         })
@@ -73,7 +77,12 @@ ul.addEventListener("click", function (event) {
     }
 
     if (event.target.nodeName == "LI") {
-        event.target.classList.toggle('completed');
+        // event.target.classList.toggle('completed');
+        let li = event.target;
+        let idx = Number(li.dataset.index);
+        list[idx].completed = li.classList.toggle("completed");
+        localStorage.setItem("list", JSON.stringify(list));
+        // console.log(idx);
     }
 
 });
@@ -83,7 +92,12 @@ function renderTasks(listItems){
     uList.innerText = ""; // deleting the entire UL then again refilling it with new values (including the old ones)
     for(let i = 0; i < listItems.length; i++){
         let li = document.createElement("li");
-        li.innerText = listItems[i];
+        // li.innerText = listItems[i];
+        li.innerText = listItems[i].text;
+        if(listItems[i].completed){
+            li.classList.add("completed");
+        }
+
         li.dataset.index = i;
         uList.appendChild(li);
 
